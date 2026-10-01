@@ -35,7 +35,7 @@ ax2.axhline(0, color="black", lw=0.6); ax2.axvline(0, color="black", lw=0.6)
 ax2.grid(True, alpha=0.3); ax2.legend(fontsize=9)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/04_Linear_Equations/linear_eq.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/06_Linear_Equations/linear_eq.png",
             dpi=110, bbox_inches="tight")
 print("Saved: linear_eq.png")
 plt.show()

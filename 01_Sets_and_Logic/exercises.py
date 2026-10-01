@@ -8,63 +8,86 @@ A = {1,2,3,4,5}; B = {3,4,5,6,7}; C = {5,6,7,8}; U = set(range(1,11))
 
 # Ex 1: Set operations
 print("\n[Ex 1] Hitung operasi himpunan A={1..5}, B={3..7}:")
-ops = [("A∪B", A|B), ("A∩B", A&B), ("A-B", A-B), ("B-A", B-A),
-       ("A△B", A^B), ("Aᶜ", U-A)]
-for name, val in ops:
-    print(f"  {name} = {sorted(val)}")
+# KONSEP:
+# Operasi himpunan meliputi gabungan (∪), irisan (∩), selisih (-), selisih simetris (△), dan komplemen (ᶜ).
+# LANGKAH:
+# 1. Gunakan operator bawaan Python untuk set: | (gabungan), & (irisan), - (selisih), ^ (selisih simetris).
+# 2. Untuk komplemen Aᶜ, kurangi semesta U dengan A (U - A).
+# 3. Urutkan hasil menggunakan sorted() sebelum dicetak.
+# IMPLEMENTASIKAN:
+# TODO: Buat daftar operasi himpunan dan cetak hasilnya.
+pass
 
 # Ex 2: Venn problems
 print("\n[Ex 2] Dari 40 siswa: 25 suka Matematika (M), 18 suka Fisika (F)")
 print("  10 suka keduanya. Berapa yang suka keduanya? Hanya M? Hanya F? Tidak keduanya?")
-M_total, F_total, both = 25, 18, 10
-only_M = M_total - both
-only_F = F_total - both
-neither = 40 - (only_M + only_F + both)
-print(f"  |M∪F| = {M_total}+{F_total}-{both} = {M_total+F_total-both}")
-print(f"  Hanya M: {only_M}, Hanya F: {only_F}, Keduanya: {both}, Tidak keduanya: {neither}")
+# KONSEP:
+# Prinsip Inklusi-Eksklusi: |M ∪ F| = |M| + |F| - |M ∩ F|. 
+# LANGKAH:
+# 1. Tentukan jumlah siswa yang hanya suka M dengan mengurangi total M dengan yang suka keduanya.
+# 2. Lakukan hal yang sama untuk F.
+# 3. Hitung siswa yang tidak suka keduanya dengan mengurangi total siswa dengan gabungan M dan F.
+# IMPLEMENTASIKAN:
+# TODO: Hitung only_M, only_F, dan neither, lalu cetak nilainya.
+pass
+# Jawaban: Hanya M: 15, Hanya F: 8, Keduanya: 10, Tidak keduanya: 7
 
 # Ex 3: Power set
 print("\n[Ex 3] Himpunan kuasa dari S = {a, b, c}")
+# KONSEP:
+# Himpunan kuasa (Power set) adalah himpunan yang berisi semua subset dari himpunan S.
+# Jumlah elemen dalam himpunan kuasa adalah 2^n, di mana n adalah jumlah elemen S.
+# LANGKAH:
+# 1. Ubah S menjadi list untuk bisa diindeks.
+# 2. Lakukan iterasi dari 0 hingga 2^n - 1.
+# 3. Gunakan bitwise AND untuk menentukan elemen mana yang masuk ke dalam subset.
+# IMPLEMENTASIKAN:
 def power_set(s):
-    s=list(s); n=len(s)
-    return [set(s[j] for j in range(n) if i&(1<<j)) for i in range(2**n)]
+    # TODO: Kembalikan daftar semua subset dari s
+    pass
+
 S = {"a","b","c"}
-ps = power_set(S)
-print(f"  |P(S)| = 2^3 = {len(ps)}")
-print(f"  P(S) = {[sorted(x) for x in sorted(ps, key=lambda x: (len(x), sorted(x)))]}")
+# ps = power_set(S)
+# print hasilnya
 
 # Ex 4: Truth tables
 print("\n[Ex 4] Tentukan nilai kebenaran:")
-cases = [
-    ("p=T, q=F: p→q",  lambda p,q: (not p) or q,  True, False),
-    ("p=F, q=T: p↔q",  lambda p,q: p==q,           False, True),
-    ("p=T: ¬(p∧¬p)",   lambda p,q: not(p and not p), True, True),
-    ("p=T,q=T: ¬p∨¬q", lambda p,q: (not p) or (not q), True, True),
-]
-for label, fn, p, q in cases:
-    result = fn(p,q)
-    print(f"  {label} = {result}")
+# KONSEP:
+# Operasi logika: Implikasi (p→q) ekuivalen dengan (¬p ∨ q), Biimplikasi (p↔q) ekuivalen dengan p == q.
+# LANGKAH:
+# 1. Definisikan fungsi lambda untuk masing-masing proposisi logika.
+# 2. Evaluasi fungsi dengan argumen kebenaran (True/False) yang diberikan.
+# IMPLEMENTASIKAN:
+# TODO: Buat list test cases yang menguji implikasi, biimplikasi, dan operasi logika gabungan, lalu cetak hasilnya.
+pass
 
 # Ex 5: De Morgan
 print("\n[Ex 5] Verifikasi Hukum De Morgan dengan contoh konkret")
 A5 = {1,2,3,4}; B5 = {3,4,5,6}; U5 = set(range(1,8))
-lhs1 = U5 - (A5 | B5)
-rhs1 = (U5-A5) & (U5-B5)
-lhs2 = U5 - (A5 & B5)
-rhs2 = (U5-A5) | (U5-B5)
-print(f"  (A∪B)ᶜ = {sorted(lhs1)},  Aᶜ∩Bᶜ = {sorted(rhs1)},  sama? {lhs1==rhs1}")
-print(f"  (A∩B)ᶜ = {sorted(lhs2)},  Aᶜ∪Bᶜ = {sorted(rhs2)},  sama? {lhs2==rhs2}")
+# KONSEP:
+# Hukum De Morgan: (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ dan (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+# LANGKAH:
+# 1. Hitung sisi kiri (LHS): U5 - (A5 | B5).
+# 2. Hitung sisi kanan (RHS): (U5 - A5) & (U5 - B5).
+# 3. Bandingkan LHS dan RHS, lalu lakukan hal yang sama untuk varian irisan.
+# IMPLEMENTASIKAN:
+# TODO: Hitung dan bandingkan kedua sisi untuk membuktikan Hukum De Morgan.
+pass
 
 # Ex 6: Proof by induction
 print("\n[Ex 6] Induksi Matematika: buktikan Σk = n(n+1)/2")
+# KONSEP:
+# Menjumlahkan deret aritmetika k dari 1 hingga n sama dengan n(n+1)/2.
+# LANGKAH:
+# 1. Buat fungsi verify_sum_formula(n) yang menghitung jumlah manual dari 1 ke n.
+# 2. Hitung juga menggunakan rumus n*(n+1)//2.
+# 3. Kembalikan kedua nilai tersebut beserta boolean apakah mereka sama.
+# IMPLEMENTASIKAN:
 def verify_sum_formula(n):
-    direct = sum(range(1, n+1))
-    formula = n*(n+1)//2
-    return direct, formula, direct==formula
+    # TODO: Hitung cara langsung dan formula, bandingkan, dan return (langsung, formula, sama_kah)
+    pass
 
-print("  n  | Σk (langsung) | n(n+1)/2 | Sama?")
-for n in range(1, 11):
-    d, f, ok = verify_sum_formula(n)
-    print(f"  {n:>2} | {d:>13} | {f:>8} | {ok}")
+# TODO: Iterasi dari n=1 hingga 10 dan panggil fungsi verifikasi.
+pass
 
 print("\n[Selesai]")

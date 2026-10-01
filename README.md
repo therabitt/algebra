@@ -130,7 +130,7 @@ Topik-topik yang membutuhkan pemahaman matang dari tier sebelumnya.
 
 ```bash
 # Mulai dari Tier 1:
-cd /home/therabitt/Projects/Math/Algebra/01_Sets_and_Logic
+cd /home/therabitt/Projects/Math/01_Algebra/01_Sets_and_Logic
 
 # Baca teori:
 cat theory.md

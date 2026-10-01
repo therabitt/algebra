@@ -4,6 +4,17 @@ Exercises: Factorization  |  Phase 1 — Topic 1.10
 print("LATIHAN 1.10 — FAKTORISASI")
 print("=" * 50)
 
+# KONSEP:
+# Faktorisasi adalah kebalikan dari ekspansi. Tujuannya mengubah bentuk 
+# penjumlahan/pengurangan menjadi perkalian faktor-faktor.
+# Beberapa pola umum: a^2 - b^2 = (a-b)(a+b), a^2 + 2ab + b^2 = (a+b)^2
+# 
+# LANGKAH:
+# 1. Identifikasi bentuk ekspresi (selisih kuadrat, kuadrat sempurna, dll)
+# 2. Terapkan rumus faktorisasi yang sesuai
+# 3. Verifikasi dengan mengekspansi kembali hasil faktorisasi
+
+# IMPLEMENTASIKAN:
 try:
     import sympy as sp
     x = sp.Symbol("x")
@@ -20,14 +31,13 @@ try:
     print(f"  {'Ekspresi':>25} | {'Faktorisasi':>25} | {'Benar?':>8}")
     print("-" * 70)
     for label, expr, expected in problems:
-        result = sp.factor(expr)
-        verify = sp.expand(result) == sp.expand(expr)
-        print(f"  {label:>25} | {str(result):>25} | {str(verify):>8}")
+        # TODO: Lakukan faktorisasi pada 'expr' menggunakan sympy (sp.factor)
+        # TODO: Lakukan verifikasi dengan mengekspansi kembali hasilnya
+        pass
+
 except ImportError:
     print("[Manual solutions]")
-    print("  x^2-16 = (x+4)(x-4)")
-    print("  x^2+8x+16 = (x+4)^2")
-    print("  x^3-27 = (x-3)(x^2+3x+9)")
-    print("  (verify by expansion)")
+    # TODO: Tulis hasil faktorisasi manual jika sympy tidak tersedia
+    pass
 
 print("\n[Selesai]")

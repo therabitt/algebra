@@ -38,7 +38,7 @@ ax2.axhline(0,"black",lw=0.6); ax2.axvline(0,"black",lw=0.6)
 ax2.grid(True, alpha=0.3); ax2.legend(fontsize=9)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/16_Rational_Expressions/rational_expr.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/15_Rational_Expressions/rational_expr.png",
             dpi=110, bbox_inches="tight")
 print("Saved: rational_expr.png")
 plt.show()

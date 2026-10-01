@@ -54,6 +54,6 @@ ax4.axhline(0,"black",lw=0.8); ax4.axvline(0,"black",lw=0.8)
 ax4.grid(True, alpha=0.3); ax4.legend(fontsize=8)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/08_Functions_and_Relations/functions.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/13_Functions_and_Relations/functions.png",
             dpi=110, bbox_inches="tight")
 print("Saved: functions.png"); plt.show()

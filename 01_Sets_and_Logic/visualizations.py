@@ -71,6 +71,6 @@ for (r,c), cell in table.get_celld().items():
         elif text == "✓": cell.set_facecolor(colors_eq)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/01_Sets_and_Logic/sets_logic.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/01_Sets_and_Logic/sets_logic.png",
             dpi=110, bbox_inches="tight")
 print("Saved: sets_logic.png"); plt.show()

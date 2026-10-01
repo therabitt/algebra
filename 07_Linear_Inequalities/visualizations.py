@@ -61,6 +61,6 @@ for px,py,col in [(0,0,"green"),(3,2,"green"),(5,1,"red"),(1,3,"green")]:
     ax2.text(px+0.1, py+0.1, f"({px},{py})", fontsize=8)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/05_Linear_Inequalities/linear_ineq.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/07_Linear_Inequalities/linear_ineq.png",
             dpi=110, bbox_inches="tight")
 print("Saved: linear_ineq.png"); plt.show()

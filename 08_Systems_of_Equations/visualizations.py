@@ -40,6 +40,6 @@ ax3.axhline(0,"black",lw=0.6); ax3.axvline(0,"black",lw=0.6)
 ax3.set_ylim(-2,8); ax3.grid(True,alpha=0.3); ax3.legend()
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/07_Systems_of_Equations/systems.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/08_Systems_of_Equations/systems.png",
             dpi=110, bbox_inches="tight")
 print("Saved: systems.png"); plt.show()

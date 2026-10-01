@@ -31,6 +31,6 @@ ax2.axhline(0,"black",lw=0.8)
 ax2.set_ylim(-6,10); ax2.grid(True,alpha=0.3); ax2.legend()
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/10_Factorization/factorization.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/09_Factorization/factorization.png",
             dpi=110, bbox_inches="tight")
 print("Saved: factorization.png"); plt.show()

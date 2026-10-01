@@ -45,6 +45,6 @@ ax3.set_xlim(-3,3); ax3.set_ylim(-3,5)
 ax3.grid(True,alpha=0.3); ax3.legend()
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/11_Exponents_and_Logarithms/exp_log.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/16_Exponents_and_Logarithms/exp_log.png",
             dpi=110, bbox_inches="tight")
 print("Saved: exp_log.png"); plt.show()

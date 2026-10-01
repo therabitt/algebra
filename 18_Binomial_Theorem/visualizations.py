@@ -60,7 +60,7 @@ ax3.set_xlabel("x"); ax3.set_ylabel("(1+x)^10")
 ax3.legend(fontsize=8); ax3.grid(True,alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/19_Binomial_Theorem/binomial.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/18_Binomial_Theorem/binomial.png",
             dpi=110, bbox_inches="tight")
 print("Saved: binomial.png")
 plt.show()

@@ -45,6 +45,6 @@ ax3.set_xlabel("n suku"); ax3.set_ylabel("Jumlah parsial")
 ax3.grid(True,alpha=0.3); ax3.legend()
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/12_Sequences_and_Series/sequences.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/17_Sequences_and_Series/sequences.png",
             dpi=110, bbox_inches="tight")
 print("Saved: sequences.png"); plt.show()

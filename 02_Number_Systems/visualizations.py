@@ -132,7 +132,7 @@ ax4.text(0.05, 0.15,
          bbox=dict(boxstyle="round", facecolor="#fff3cd", alpha=0.8))
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/01_Number_Systems/number_systems.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/02_Number_Systems/number_systems.png",
             dpi=120, bbox_inches="tight")
 print("Plot disimpan: number_systems.png")
 plt.show()

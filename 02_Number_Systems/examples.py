@@ -13,6 +13,7 @@ Jalankan: python3 examples.py
 """
 
 import math
+import sympy
 import fractions
 import decimal
 import cmath
@@ -26,13 +27,13 @@ print("=" * 60)
 
 # Bilangan asli: digunakan untuk menghitung
 natural_numbers = list(range(1, 11))
-print(f"10 bilangan asli pertama: {natural_numbers}")
+print(f"10 bilangan asli pertama: {natural_numbers}", type(natural_numbers))
 
 # Sifat: tertutup terhadap penjumlahan dan perkalian
 a, b = 7, 5
-print(f"\nKlosure terhadap +: {a} + {b} = {a+b}  (masih asli? {(a+b) >= 1})")
-print(f"Klosure terhadap ×: {a} × {b} = {a*b}  (masih asli? {(a*b) >= 1})")
-print(f"Tidak tertutup - : {a} - {b*2} = {a - b*2}  (negatif, bukan asli!)")
+print(f"\nKlosure terhadap +: {a} + {b} = {a+b}  (masih bil. asli? {(a+b) >= 1})")
+print(f"Klosure terhadap ×: {a} × {b} = {a*b}  (masih bil. asli? {(a*b) >= 1})")
+print(f"Tidak tertutup - : {a} - {b*2} = {a - b*2}  (negatif, bukan bil. asli!)")
 
 # Well-ordering: setiap himpunan non-kosong punya minimum
 subset = {7, 2, 15, 3, 9}
@@ -50,7 +51,7 @@ print(f"Z dari -5 ke 5: {integers}")
 
 # Klosure terhadap pengurangan (yang tidak dimiliki N)
 x, y = 3, 8
-print(f"\nKlosure terhadap -: {x} - {y} = {x - y}  (ada di Z? Ya!)")
+print(f"\nKlosure terhadap (-) : {x} - {y} = {x - y}  (ada di Z? Ya!)")
 
 # Bilangan bulat: bisa dibandingkan secara total
 nums = [-4, 7, -1, 0, 5, -9]
@@ -99,7 +100,8 @@ print("SECTION 4: Bilangan Irasional (Irrational Numbers)")
 print("=" * 60)
 
 print(f"√2  = {math.sqrt(2):.20f}")
-print(f"π   = {math.pi:.20f}")
+print(f"π   = {math.pi:.30f}")
+print(f"π   = 3.141592653589793115997963468544")
 print(f"e   = {math.e:.20f}")
 print(f"φ   = {(1 + math.sqrt(5)) / 2:.20f}  (golden ratio)")
 
@@ -161,52 +163,54 @@ print("\n" + "=" * 60)
 print("SECTION 6: Number System Classifier")
 print("=" * 60)
 
+
 def classify_number(x):
-    """
-    Mengklasifikasikan sebuah bilangan ke dalam sistem bilangan yang tepat.
-    Returns list dari semua sistem yang berlaku.
-    """
     systems = []
     
     # Bilangan kompleks — semua bilangan adalah kompleks
     systems.append("Complex (C)")
     
-    # Cek apakah real (bagian imajiner = 0)
-    if isinstance(x, complex):
-        if x.imag != 0:
-            return systems  # Hanya kompleks
-        x = x.real
+    # Konversi ke tipe sympy jika memungkinkan untuk deteksi simbolik irasional
+    sym_x = sympy.sympify(x)
     
+    # Cek apakah real (bagian imajiner = 0)
+    # Gunakan fungsi bawaan sympy untuk mengecek komponen imajiner
+    if sym_x.is_real is False:
+        return systems  # Hanya kompleks
+        
     systems.append("Real (R)")
     
-    # Cek rasional vs irasional
-    try:
-        frac = fractions.Fraction(x).limit_denominator(10**9)
-        if abs(float(frac) - x) < 1e-9:
-            systems.append("Rational (Q)")
-            # Cek integer
-            if int(x) == x:
-                systems.append("Integer (Z)")
-                # Cek whole (non-negatif)
-                if x >= 0:
-                    systems.append("Whole (W)")
-                    # Cek natural (positif)
-                    if x > 0:
-                        systems.append("Natural (N)")
-        else:
-            systems.append("Irrational")
-    except (ValueError, TypeError):
+    # STRATEGI BARU: Deteksi irasional menggunakan keunggulan simbolik sympy
+    # Modul sympy tahu secara mutlak bahwa sqrt(2) dan pi adalah irasional
+    if sym_x.is_irrational:
         systems.append("Irrational")
+        return systems
+        
+    # Jika lolos ke bawah, berarti bilangan tersebut pasti Rasional
+    systems.append("Rational (Q)")
     
+    # Untuk pengecekan Integer ke bawah, kita kembalikan ke float/int biasa
+    # agar tidak bentrok dengan tipe data khusus sympy
+    val = float(sym_x)
+    
+    if int(val) == val:
+        systems.append("Integer (Z)")
+        if val >= 0:
+            systems.append("Whole (W)")
+            if val > 0:
+                systems.append("Natural (N)")
+                
     return systems
 
+# Saat mendaftarkan test_numbers, ganti fungsi math biasa 
+# menjadi fungsi simbolik milik sympy agar tipenya terbaca benar
 test_numbers = [
     (5, "5"),
     (0, "0"),
     (-3, "-3"),
     (0.5, "0.5 = 1/2"),
-    (math.sqrt(2), "√2"),
-    (math.pi, "π"),
+    (sympy.sqrt(2), "√2"),  # Ganti math.sqrt menjadi sympy.sqrt
+    (sympy.pi, "π"),       # Ganti math.pi menjadi sympy.pi
     (complex(0, 1), "i"),
 ]
 

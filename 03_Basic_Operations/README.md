@@ -37,10 +37,10 @@ Setelah mempelajari modul ini, kamu akan dapat / After studying this module, you
 
 | Operasi | Simbol | Contoh | Hasil |
 |---------|--------|--------|-------|
-| Penjumlahan / Addition |  | 7 + 3 | 10 |
-| Pengurangan / Subtraction |  | 7 − 3 | 4 |
-| Perkalian / Multiplication |  or  | 7 × 3 | 21 |
-| Pembagian / Division |  or  | 7 ÷ 3 | 2.333... |
+| Penjumlahan / Addition | + | 7 + 3 | 10 |
+| Pengurangan / Subtraction | - | 7 − 3 | 4 |
+| Perkalian / Multiplication | ×  | 7 × 3 | 21 |
+| Pembagian / Division |  ÷  | 7 ÷ 3 | 2.333... |
 
 ---
 
@@ -48,10 +48,10 @@ Setelah mempelajari modul ini, kamu akan dapat / After studying this module, you
 
 | Operasi | Simbol Python | Contoh | Hasil |
 |---------|--------------|--------|-------|
-| Modulo / Remainder |  | 7 % 3 | 1 |
-| Perpangkatan / Exponentiation |  | 2 ** 10 | 1024 |
-| Pembagian Bulat / Floor Division |  | 7 // 3 | 2 |
-| Akar / Root |  | 9 ** 0.5 | 3.0 |
+| Modulo / Remainder | % | 7 % 3 | 1 |
+| Perpangkatan / Exponentiation | ** | 2 ** 10 | 1024 |
+| Pembagian Bulat / Floor Division | // | 7 // 3 | 2 |
+| Akar / Root | a ** 0.5 | 9 ** 0.5 | 3.0 |
 
 ---
 

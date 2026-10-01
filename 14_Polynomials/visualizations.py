@@ -37,6 +37,6 @@ ax2.axhline(0,"black",lw=0.8); ax2.axvline(0,"black",lw=0.5)
 ax2.set_ylim(-5,5); ax2.grid(True,alpha=0.3); ax2.legend(fontsize=8)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/09_Polynomials/polynomials.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/14_Polynomials/polynomials.png",
             dpi=110, bbox_inches="tight")
 print("Saved: polynomials.png"); plt.show()

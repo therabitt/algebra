@@ -2,10 +2,12 @@
 Exercises: Number Systems (Sistem Bilangan)
 Phase 1 — Topic 1.1
 
-Petunjuk: Coba kerjakan sendiri dulu sebelum melihat solusi!
-Uncomment bagian SOLUTION untuk melihat jawaban.
+Petunjuk:
+  1. Baca setiap soal dengan seksama
+  2. Implementasikan fungsimu sendiri di bawah setiap soal
+  3. Jalankan file untuk melihat hasilnya
+  4. Jika sudah selesai → bandingkan dengan exercises_solution.py
 """
-
 import math
 import fractions
 
@@ -14,149 +16,164 @@ print("LATIHAN 1.1 — SISTEM BILANGAN")
 print("=" * 60)
 
 # ─────────────────────────────────────────────────────────────
-# Exercise 1: Klasifikasi Bilangan
+# [Ex 1] KLASIFIKASI BILANGAN
 # ─────────────────────────────────────────────────────────────
-print("\n[Exercise 1] Klasifikasikan bilangan berikut ke dalam")
-print("sistem bilangan yang tepat (N, W, Z, Q, Irasional, C):")
-print("  a) -7")
-print("  b) 0")
-print("  c) 3/4")
-print("  d) √5")
-print("  e) 2 + 3i")
-print("  f) -3/1")
-print("\n# Tulis jawaban kamu di sini:")
-# jawaban_1a = ?
+# KONSEP:
+#   Hierarki sistem bilangan:
+#   N (asli) ⊂ W (cacah) ⊂ Z (bulat) ⊂ Q (rasional) ⊂ R (real) ⊂ C (kompleks)
+#   Irasional (√2, π, e) ⊂ R tapi BUKAN ∈ Q
+#
+# LANGKAH:
+#   1. -7 → negatif, jadi bukan N/W. Masuk Z, Q (bisa ditulis -7/1), R, C
+#   2. 0 → masuk W, Z, Q, R, C
+#   3. 3/4 → bukan bilangan bulat, jadi Q, R, C
+#   4. √5 → irasional (tidak bisa ditulis p/q), masuk R dan C saja
+#   5. 2+3i → bilangan kompleks, C saja
+#   6. -3/1 = -3 → sama dengan -7, masuk Z, Q, R, C
+#
+# IMPLEMENTASIKAN:
+print("\n[Ex 1] Klasifikasikan bilangan berikut (N, W, Z, Q, Irasional, C):")
+print("  a) -7    b) 0    c) 3/4    d) √5    e) 2+3i    f) -3/1")
 
-# --- SOLUTION ---
-# a) -7  → Z (bulat), Q (rasional), R (real), C (kompleks)
-# b) 0   → W (cacah), Z (bulat), Q (rasional), R (real), C (kompleks)
-# c) 3/4 → Q (rasional), R (real), C (kompleks)  [bukan Z karena bukan bulat]
-# d) √5  → Irasional, R (real), C (kompleks)
-# e) 2+3i→ C (kompleks) saja
-# f) -3/1→ Z (bulat), Q (rasional), R (real), C (kompleks)
+# TODO: print klasifikasi masing-masing bilangan, contoh:
+# print("  -7  ∈ Z, Q, R, C")
+# print("  0   ∈ W, Z, Q, R, C")
+# ... dst untuk semua 6 bilangan
 
-def solution_1():
-    numbers = {
-        "-7"  : (-7, "Z, Q, R, C"),
-        "0"   : (0,  "W, Z, Q, R, C"),
-        "3/4" : (fractions.Fraction(3,4), "Q, R, C"),
-        "√5"  : (math.sqrt(5), "Irasional, R, C"),
-        "2+3i": (complex(2,3), "C only"),
-        "-3/1": (-3, "Z, Q, R, C"),
-    }
-    print("\n  SOLUTION 1:")
-    for name, (val, systems) in numbers.items():
-        print(f"  {name:8} ∈ {systems}")
+# Jawaban: -7∈Z,Q,R,C | 0∈W,Z,Q,R,C | 3/4∈Q,R,C | √5∈Irasional,R,C | 2+3i∈C | -3/1∈Z,Q,R,C
 
-solution_1()
 
 # ─────────────────────────────────────────────────────────────
-# Exercise 2: Desimal Berulang ke Pecahan
+# [Ex 2] DESIMAL BERULANG KE PECAHAN
 # ─────────────────────────────────────────────────────────────
-print("\n" + "-" * 40)
-print("[Exercise 2] Ubah desimal berulang berikut menjadi pecahan:")
-print("  a) 0.666...")
-print("  b) 0.272727...")
-print("  c) 0.583333...")
-print("  Hint: Jika x = 0.aaa..., maka 10x - x = a, sehingga x = a/9")
+# KONSEP:
+#   Setiap desimal berulang adalah bilangan RASIONAL (dapat ditulis p/q).
+#   Trik: kalikan dengan 10^n agar bagian berulang sejajar, lalu kurangi.
+#
+# LANGKAH untuk 0.666...:
+#   Misalkan x = 0.666...
+#   10x = 6.666...
+#   10x - x = 6.666... - 0.666... = 6
+#   9x = 6  →  x = 6/9 = 2/3
+#
+# LANGKAH untuk 0.272727...:
+#   x = 0.272727...
+#   100x = 27.272727...
+#   99x = 27  →  x = 27/99 = 3/11
+#
+# LANGKAH untuk 0.58333...:
+#   Bagian tidak berulang: 5 (1 digit), bagian berulang: 3 (1 digit)
+#   10x = 5.8333...  → 100x = 58.333...
+#   90x = 53  →  x = 53/90
+#
+# IMPLEMENTASIKAN:
+print("\n[Ex 2] Ubah desimal berulang ke pecahan:")
+print("  a) 0.666...    b) 0.272727...    c) 0.583333...")
 
-def solution_2():
-    print("\n  SOLUTION 2:")
-    # a) x = 0.666... → 10x = 6.666... → 9x = 6 → x = 6/9 = 2/3
-    a = fractions.Fraction(6, 9)
-    print(f"  a) 0.666... = {a} = {float(a):.6f}")
-    
-    # b) x = 0.272727... → 100x = 27.272727... → 99x = 27 → x = 27/99 = 3/11
-    b = fractions.Fraction(27, 99)
-    print(f"  b) 0.272727... = {b} = {float(b):.6f}")
-    
-    # c) x = 0.5833... → non-repeating part 5, repeating 3
-    # 10x = 5.833... → 100x = 58.333... → 90x = 53 → x = 53/90
-    c = fractions.Fraction(53, 90)
-    print(f"  c) 0.58333... = {c} = {float(c):.6f}")
+# TODO: hitung setiap pecahan menggunakan class fractions.Fraction
+# dan cetak hasilnya dalam bentuk: "a) 0.666... = 2/3 = 0.666667"
+# Gunakan fractions.Fraction(pembilang, penyebut) untuk menyederhanakan otomatis
 
-solution_2()
+# Jawaban: a) 2/3  b) 3/11  c) 53/90
 
-# ─────────────────────────────────────────────────────────────
-# Exercise 3: Operasi Bilangan Kompleks
-# ─────────────────────────────────────────────────────────────
-print("\n" + "-" * 40)
-print("[Exercise 3] Hitung operasi bilangan kompleks berikut:")
-print("  z1 = 4 + 3i,  z2 = 2 - i")
-print("  a) z1 + z2")
-print("  b) z1 × z2")
-print("  c) |z1|")
-print("  d) z1 / z2  (dalam bentuk a + bi)")
-
-def solution_3():
-    z1 = complex(4, 3)
-    z2 = complex(2, -1)
-    print("\n  SOLUTION 3:")
-    print(f"  a) z1 + z2 = {z1 + z2}")
-    print(f"  b) z1 × z2 = {z1 * z2}")
-    print(f"  c) |z1|   = {abs(z1)}")
-    div = z1 / z2
-    print(f"  d) z1/z2  = {div.real:.4f} + {div.imag:.4f}i")
-
-solution_3()
 
 # ─────────────────────────────────────────────────────────────
-# Exercise 4: Keanggotaan Interval
+# [Ex 3] OPERASI BILANGAN KOMPLEKS
 # ─────────────────────────────────────────────────────────────
-print("\n" + "-" * 40)
-print("[Exercise 4] Tentukan apakah x = 4 ada di interval berikut:")
-print("  a) [2, 4]   b) (2, 4)   c) [4, 7)   d) (4, 7]")
+# KONSEP:
+#   z = a + bi, dimana i² = -1
+#   Penjumlahan: (a+bi)+(c+di) = (a+c) + (b+d)i
+#   Perkalian:   (a+bi)(c+di) = (ac-bd) + (ad+bc)i
+#   Modulus:     |z| = √(a² + b²)
+#   Pembagian:   kalikan pembilang dan penyebut dengan KONJUGAT (a-bi)
+#
+# LANGKAH untuk z1/z2 dimana z1=4+3i, z2=2-i:
+#   z1/z2 = (4+3i)/(2-i) × (2+i)/(2+i)
+#         = (4+3i)(2+i) / (4+1)
+#         = (8+4i+6i+3i²) / 5
+#         = (8-3 + 10i) / 5
+#         = 5/5 + 10i/5 = 1 + 2i
+#
+# IMPLEMENTASIKAN:
+print("\n[Ex 3] Hitung operasi kompleks: z1=4+3i, z2=2-i")
+z1 = complex(4, 3)
+z2 = complex(2, -1)
+# TODO: hitung dan cetak:
+# a) z1 + z2
+# b) z1 × z2
+# c) |z1|
+# d) z1 / z2 dalam bentuk a+bi
 
-def solution_4():
-    x = 4
-    print("\n  SOLUTION 4 (x = 4):")
-    print(f"  a) [2, 4] : {2 <= x <= 4}  (ya, titik ujung tertutup)")
-    print(f"  b) (2, 4) : {2 < x < 4}  (tidak, ujung terbuka)")
-    print(f"  c) [4, 7) : {4 <= x < 7}  (ya, ujung kiri tertutup)")
-    print(f"  d) (4, 7] : {4 < x <= 7}  (tidak, ujung kiri terbuka)")
+# Jawaban: a) 6+2i  b) 11+2i  c) 5.0  d) 1+2i
 
-solution_4()
-
-# ─────────────────────────────────────────────────────────────
-# Exercise 5: Floor dan Ceiling
-# ─────────────────────────────────────────────────────────────
-print("\n" + "-" * 40)
-print("[Exercise 5] Hitung ⌊x⌋ dan ⌈x⌉ untuk:")
-print("  a) x = 2.9   b) x = -1.2   c) x = 5.0   d) x = -3.0")
-
-def solution_5():
-    import math
-    values = [2.9, -1.2, 5.0, -3.0]
-    print("\n  SOLUTION 5:")
-    for v in values:
-        print(f"  x = {v:5.1f}: ⌊x⌋ = {math.floor(v):3d}, ⌈x⌉ = {math.ceil(v):3d}")
-
-solution_5()
 
 # ─────────────────────────────────────────────────────────────
-# Exercise 6: Sifat Klosure
+# [Ex 4] KEANGGOTAAN INTERVAL
 # ─────────────────────────────────────────────────────────────
-print("\n" + "-" * 40)
-print("[Exercise 6] Tunjukkan mana yang tertutup (TRUE/FALSE):")
-print("  Gunakan contoh angka untuk membuktikan atau menyangkal.")
-print("  a) N tertutup terhadap pengurangan")
-print("  b) Z tertutup terhadap perkalian")
-print("  c) Q tertutup terhadap pembagian")
-print("  d) Irasional tertutup terhadap perkalian")
+# KONSEP:
+#   Notasi interval:
+#   [a,b]  = tertutup: a ≤ x ≤ b  (titik ujung TERMASUK)
+#   (a,b)  = terbuka:  a < x < b  (titik ujung TIDAK termasuk)
+#   [a,b)  = setengah terbuka: a ≤ x < b
+#
+# LANGKAH untuk x=4:
+#   [2,4] : cek 2 <= 4 <= 4  → True
+#   (2,4) : cek 2 < 4 < 4   → False (4 tidak < 4)
+#   [4,7) : cek 4 <= 4 < 7  → True
+#   (4,7] : cek 4 < 4 <= 7  → False (4 tidak > 4)
+#
+# IMPLEMENTASIKAN:
+print("\n[Ex 4] Apakah x=4 ada di interval: [2,4]  (2,4)  [4,7)  (4,7]?")
+x = 4
+# TODO: cek setiap interval dengan ekspresi boolean Python dan cetak hasilnya
+# Contoh: print(f"  [2,4] : {2 <= x <= 4}")
 
-def solution_6():
-    print("\n  SOLUTION 6:")
-    # a) N: 2 - 5 = -3, bukan N → FALSE
-    print(f"  a) N tertutup -? FALSE (contoh: 2 - 5 = {2-5}, bukan asli)")
-    # b) Z: a*b selalu bulat → TRUE
-    print(f"  b) Z tertutup ×? TRUE  (bulat × bulat = bulat selalu)")
-    # c) Q: p/q ÷ r/s = ps/qr, asal pembagi ≠ 0 → TRUE
-    print(f"  c) Q tertutup ÷? TRUE  (asal pembagi ≠ 0)")
-    # d) Irasional: √2 × √2 = 2 (rasional!) → FALSE
-    val = math.sqrt(2) * math.sqrt(2)
-    print(f"  d) Irasional ×? FALSE (√2 × √2 = {val} = 2, rasional!)")
+# Jawaban: [2,4]=True  (2,4)=False  [4,7)=True  (4,7]=False
 
-solution_6()
 
-print("\n[Selesai] Semua latihan diselesaikan!")
-print("Lanjut ke: visualizations.py atau challenge.py")
+# ─────────────────────────────────────────────────────────────
+# [Ex 5] FLOOR DAN CEILING
+# ─────────────────────────────────────────────────────────────
+# KONSEP:
+#   ⌊x⌋ (floor)   = bilangan bulat terbesar ≤ x
+#   ⌈x⌉ (ceiling) = bilangan bulat terkecil ≥ x
+#   Hati-hati untuk bilangan NEGATIF:
+#   ⌊-1.2⌋ = -2 (bukan -1!)   ⌈-1.2⌉ = -1
+#
+# LANGKAH:
+#   Gunakan math.floor(x) dan math.ceil(x)
+#
+# IMPLEMENTASIKAN:
+print("\n[Ex 5] Hitung ⌊x⌋ dan ⌈x⌉:")
+values = [2.9, -1.2, 5.0, -3.0]
+# TODO: loop values, cetak floor dan ceiling setiap nilai
+# Contoh format: "x =  2.9: ⌊x⌋ =  2, ⌈x⌉ =  3"
+
+# Jawaban: 2.9→(2,3)  -1.2→(-2,-1)  5.0→(5,5)  -3.0→(-3,-3)
+
+
+# ─────────────────────────────────────────────────────────────
+# [Ex 6] SIFAT KLOSURE (CLOSURE)
+# ─────────────────────────────────────────────────────────────
+# KONSEP:
+#   Himpunan S "tertutup" terhadap operasi ○ jika:
+#   untuk SEMUA a,b ∈ S → a ○ b ∈ S (hasilnya masih di S)
+#   Untuk MENYANGKAL: cukup temukan SATU contoh penyangkal!
+#
+# LANGKAH:
+#   a) N tertutup terhadap -? Coba 2-5=-3 → bukan N → FALSE
+#   b) Z tertutup terhadap ×? Bulat×Bulat=Bulat selalu → TRUE
+#   c) Q tertutup terhadap ÷? p/q ÷ r/s = ps/qr ∈ Q (asal r≠0) → TRUE
+#   d) Irasional tertutup ×? √2 × √2 = 2 (rasional!) → FALSE
+#
+# IMPLEMENTASIKAN:
+print("\n[Ex 6] Sifat klosure (True/False + contoh):")
+print("  a) N tertutup terhadap pengurangan?")
+print("  b) Z tertutup terhadap perkalian?")
+print("  c) Q tertutup terhadap pembagian?")
+print("  d) Irasional tertutup terhadap perkalian?")
+# TODO: untuk setiap kasus, cetak jawaban True/False beserta contoh penyangkal/pembuktian
+
+# Jawaban: a)FALSE(2-5=-3∉N)  b)TRUE  c)TRUE  d)FALSE(√2×√2=2∈Q)
+
+print("\n[Selesai] Bandingkan dengan exercises_solution.py setelah selesai!")

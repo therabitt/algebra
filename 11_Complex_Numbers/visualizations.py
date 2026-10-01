@@ -61,7 +61,7 @@ ax3.imshow(M, extent=[-2.5,1,-1.2,1.2], cmap="inferno", origin="lower", aspect="
 ax3.set_xlabel("Re(c)"); ax3.set_ylabel("Im(c)")
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/18_Complex_Numbers/complex_numbers.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/11_Complex_Numbers/complex_numbers.png",
             dpi=110, bbox_inches="tight")
 print("Saved: complex_numbers.png")
 plt.show()

@@ -56,7 +56,7 @@ ax3.axhline(0,"black",lw=0.6); ax3.set_ylim(-2,10)
 ax3.grid(True, alpha=0.3); ax3.legend(fontsize=8)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/17_Quadratic_and_Rational_Inequalities/quadratic_rational_ineq.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/12_Quadratic_and_Rational_Inequalities/quadratic_rational_ineq.png",
             dpi=110, bbox_inches="tight")
 print("Saved: quadratic_rational_ineq.png")
 plt.show()

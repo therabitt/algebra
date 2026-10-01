@@ -31,7 +31,7 @@ ax2.fill_between(a_vals, (a_vals+b)**2, a_vals**2+b**2,
 ax2.set_xlabel("a"); ax2.grid(True, alpha=0.3); ax2.legend()
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/03_Algebraic_Expressions/algebraic_expr.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/04_Algebraic_Expressions/algebraic_expr.png",
             dpi=110, bbox_inches="tight")
 print("Saved: algebraic_expr.png")
 plt.show()

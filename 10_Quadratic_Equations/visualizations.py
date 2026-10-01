@@ -56,6 +56,6 @@ ax3.set_xlabel("Waktu (s)"); ax3.set_ylabel("Ketinggian (m)")
 ax3.grid(True, alpha=0.3); ax3.legend()
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/06_Quadratic_Equations/quadratic.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/10_Quadratic_Equations/quadratic.png",
             dpi=110, bbox_inches="tight")
 print("Saved: quadratic.png"); plt.show()

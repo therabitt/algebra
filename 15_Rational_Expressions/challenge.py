@@ -8,33 +8,39 @@ try:
     x = sp.Symbol('x')
 
     # Challenge 1: Build partial fraction integrator
+    # KONSEP: Integral dari fungsi rasional sering kali bisa diselesaikan dengan mendekomposisinya ke pecahan parsial terlebih dahulu.
+    # LANGKAH:
+    # 1. Dekomposisi integrand (2x+3)/((x+1)(x-2)) menggunakan sympy.apart
+    # 2. Integrasikan hasil dekomposisi tersebut
+    # 3. Verifikasi dengan menurunkan (diferensiasi) hasil integral
+    # IMPLEMENTASIKAN:
     print("\n[Ch1] Integrasi melalui Dekomposisi Parsial")
     print("  ∫ (2x+3)/((x+1)(x-2)) dx")
-    integrand = (2*x+3)/((x+1)*(x-2))
-    decomposed = sp.apart(integrand, x)
-    integral = sp.integrate(decomposed, x)
-    print(f"  Dekomposisi : {decomposed}")
-    print(f"  Integral    : {integral} + C")
-    print(f"  Verifikasi  : d/dx[hasil] = {sp.simplify(sp.diff(integral, x))}")
+    # TODO: Hitung dekomposisi, integral, dan verifikasi
+    pass
 
     # Challenge 2: Continued fractions as rational expressions
+    # KONSEP: Pecahan berlanjut (continued fractions) dapat disederhanakan menjadi fungsi rasional standar.
+    # LANGKAH:
+    # 1. Tulis ekspresi pecahan secara berurut atau nested
+    # 2. Sederhanakan menggunakan fungsi simplify dari sympy
+    # IMPLEMENTASIKAN:
     print("\n[Ch2] Continued Fraction sebagai Ekspresi Rasional")
     print("  1 + 1/(1 + 1/(1 + 1/x))")
-    expr = 1 + 1/(1 + 1/(1 + 1/x))
-    simplified = sp.simplify(expr)
-    print(f"  = {simplified}")
+    # TODO: Evaluasi dan sederhanakan expr
+    pass
 
     # Challenge 3: Rational function interpolation
+    # KONSEP: Padé approximant menggunakan fungsi rasional untuk mengaproksimasi fungsi (biasanya lebih baik dari deret Taylor).
+    # LANGKAH:
+    # 1. Padé approximant [1,1] untuk e^x adalah (1 + x/2) / (1 - x/2)
+    # 2. Hitung nilai aproksimasi tersebut pada titik-titik uji
+    # 3. Bandingkan dengan nilai aktual e^x dan aproksimasi Taylor (1 + x)
+    # IMPLEMENTASIKAN:
     print("\n[Ch3] Interpolasi Rasional — Padé Approximant")
-    print("  Aproksimasi e^x dengan ekspresi rasional [1,1] Padé:")
-    print("  e^x ≈ (1 + x/2) / (1 - x/2)  (lebih akurat dari Taylor derajat 1!)")
     import math
-    print(f"  {'x':>6} | {'e^x':>12} | {'Padé [1,1]':>12} | {'Taylor x+1':>12}")
-    for xv in [-1, -0.5, 0, 0.5, 1, 2]:
-        exact = math.e**xv
-        pade = (1 + xv/2)/(1 - xv/2) if abs(1-xv/2) > 1e-10 else float('nan')
-        taylor = 1 + xv
-        print(f"  {xv:>6.2f} | {exact:>12.6f} | {pade:>12.6f} | {taylor:>12.6f}")
+    # TODO: Bandingkan e^x dengan Padé approximant dan Taylor approximant
+    pass
 
 except ImportError:
     print("  sympy diperlukan: pip install sympy")

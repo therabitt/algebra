@@ -59,6 +59,6 @@ ax3.set_xlim(-1.5,1.5); ax3.set_ylim(-1.5,1.5); ax3.set_aspect("equal")
 ax3.grid(True,alpha=0.3); ax3.legend(fontsize=9)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/15_Absolute_Value/absolute_value.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/05_Absolute_Value/absolute_value.png",
             dpi=110, bbox_inches="tight")
 print("Saved: absolute_value.png"); plt.show()

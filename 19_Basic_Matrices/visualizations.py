@@ -56,6 +56,6 @@ det = np.linalg.det(M)
 ax2.set_xlabel(f"det = {det:.2f},  tr = {np.trace(M):.0f}", fontsize=10)
 
 plt.tight_layout()
-plt.savefig("/home/therabitt/Projects/Math/Algebra/13_Basic_Matrices/matrices.png",
+plt.savefig("/home/therabitt/Projects/Math/01_Algebra/19_Basic_Matrices/matrices.png",
             dpi=110, bbox_inches="tight")
 print("Saved: matrices.png"); plt.show()

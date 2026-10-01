@@ -9,18 +9,31 @@ print("  Maksimalkan: P = 3x + 5y")
 print("  Subject to: x+y<=4, x>=0, y>=0")
 print("  Titik-titik ekstrem (corner points):")
 
-corners = [(0,0), (4,0), (0,4)]
-print(f"  {'Titik':>10} | {'P=3x+5y':>10}")
-best = None
-for (x,y) in corners:
-    P = 3*x + 5*y
-    print(f"  ({x},{y}):        {P:>10}")
-    if best is None or P > best[1]:
-        best = ((x,y), P)
-print(f"  Maksimum P = {best[1]} di titik {best[0]}")
+# KONSEP:
+# Dalam Pemrograman Linear, titik maksimum atau minimum dari suatu fungsi objektif linear 
+# di dalam domain terbatas polihedral selalu terjadi pada titik-titik sudut (corner points).
+# ALGORITMA:
+# 1. Hitung titik persilangan pertidaksamaan (corners: (0,0), (4,0), (0,4)).
+# 2. Evaluasi fungsi P di semua corner tersebut.
+# 3. Cari dan ambil titik dengan P yang maksimal.
+
+# IMPLEMENTASIKAN:
+# corners = [(0,0), (4,0), (0,4)]
+# TODO: Uji setiap titik di atas, temukan kombinasi yang memaksimalkan P, dan print.
+pass
 
 # Challenge 2: Interval Intersection
 print("\n[Ch2] Operasi Interval")
+
+# KONSEP:
+# Operasi himpunan interval di bilangan real (contoh: [-2, 5) irisan (1, 8] menjadi (1, 5)).
+# ALGORITMA:
+# 1. Suatu Interval memiliki batas bawah (a) dan atas (b), serta status penutup kurung siku (inclusive) atau bulat (exclusive).
+# 2. Fungsi contains: Mengecek jika titik berada dalam interval tersebut (x >= a/x > a).
+# 3. Fungsi intersect: Mempertemukan 2 interval. Batas bawah adalah max(self.a, other.a), 
+#    batas atas adalah min(self.b, other.b).
+# 4. Jika batas bawah > batas atas, irisannya kosong (return None).
+# 5. Penentuan jenis kurung siku pada titik persilangan dilakukan dengan mengecek interval pemilik titik (jika self.a > other.a, ambil jenis kurung self).
 
 class Interval:
     def __init__(self, a, b, left_closed=True, right_closed=True):
@@ -28,29 +41,19 @@ class Interval:
         self.lc, self.rc = left_closed, right_closed
 
     def __contains__(self, x):
-        l = (x >= self.a) if self.lc else (x > self.a)
-        r = (x <= self.b) if self.rc else (x < self.b)
-        return l and r
+        # TODO: Implementasi logika pengecekan himpunan untuk menentukan apakah x ada di dalamnya.
+        pass
 
     def intersect(self, other):
-        new_a = max(self.a, other.a)
-        new_b = min(self.b, other.b)
-        if new_a > new_b: return None
-        lc = self.lc if self.a > other.a else (other.lc if other.a > self.a else (self.lc and other.lc))
-        rc = self.rc if self.b < other.b else (other.rc if other.b < self.b else (self.rc and other.rc))
-        return Interval(new_a, new_b, lc, rc)
+        # IMPLEMENTASIKAN:
+        # TODO: Cari batas irisan (intersection), beserta resolusi logika kurung tertutup.
+        pass
 
     def __repr__(self):
-        l = "[" if self.lc else "("
-        r = "]" if self.rc else ")"
-        return f"{l}{self.a}, {self.b}{r}"
+        # TODO: Kembalikan representasi string, contoh "(-2, 5]".
+        pass
 
-I1 = Interval(-2, 5)
-I2 = Interval(1, 8)
-inter = I1.intersect(I2)
-print(f"  I1 = {I1},  I2 = {I2}")
-print(f"  I1 ∩ I2 = {inter}")
-print(f"  x=3 ∈ I1∩I2? {3 in inter}")
-print(f"  x=6 ∈ I1∩I2? {6 in inter}")
+# TODO: Uji logika dengan mengiris interval I1 = [-2, 5] dan I2 = [1, 8]. Periksa eksistensi titik x=3 dan x=6.
+pass
 
 print("\n[Selesai Challenge 1.5]")
